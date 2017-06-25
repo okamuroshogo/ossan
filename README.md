@@ -40,6 +40,7 @@
 |ossan_1|ossan_2|ossan_special|
 |---|---|---|
 |![](public/img/ossan1-1.gif)|![](public/img/ossan2-1.gif)|![](public/img/ossanspecial-1.gif)|
+
 [![クリエイティブ・コモンズ・ライセンス](https://i.creativecommons.org/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)
 
 ## 6. 今後の展望
