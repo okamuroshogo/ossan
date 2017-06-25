@@ -2,7 +2,7 @@
 site_name: 卑猥.city
 
 # meta description（og:description・twitter:descriptionでも使用）
-description: 卑猥.city
+description: 卑猥.city(ひわいどっとシティ)は、世の中のいわゆる不審者等の出現エリアを登録し、リアルタイムに可視化する防犯サービスである。
 
 # meta keywords
 keywords: [卑猥, hiwai]
@@ -12,7 +12,7 @@ keywords: [卑猥, hiwai]
 url: http://hiwai.city/
 
 # Facebook OGP・Twitter cardsで使われる画像 フルURLで指定すること
-ogp_image_url: http://hiwai.city/img/logo.png
+ogp_image_url: http://hiwai.city/img/ogp.png
 
 # Facebookアプリのapp id（入れないとWarningが出る）
 # facebook_app_id: 99999999999
