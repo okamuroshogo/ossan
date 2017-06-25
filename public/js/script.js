@@ -36766,7 +36766,7 @@ function initApp() {
         }
       },
       scale: 1,
-      // optimized: false,
+      optimized: false,
       animation: google.maps.Animation.DROP
     });
     marker.setPosition({
