@@ -1,5 +1,6 @@
 import $ from "jquery";
 import _ from "lodash";
+import Firebase from "../lib/Firebase";
 
 (() => {
 
@@ -9,11 +10,24 @@ import _ from "lodash";
   const callbackName = 'initMap' + Date.now();
   $target.eq(0).after(`<script src="${url}&callback=${callbackName}"></script>`);
 
+  const fb =new Firebase();
+
   window[callbackName] = () => {
+    let _latLng = { lat: 35.660013, lng: 139.729054 };
+    navigator.geolocation.getCurrentPosition(() => successCallback(), () => errorCallback(), {
+      enableHighAccuracy: true,
+      timeout: 6000,
+      maximumAge: 600000,
+    });
+    function successCallback(pos) {
+      _latLng = {
+        lat: pos.coords.latitude || 35.660013,
+        lng: pos.coords.longitude || 139.729054,
+      };
+    }
     // Create a map object and specify the DOM element for display.
-    const latlng = { lat: 35.660013, lng: 139.729054 };
     const mapOption = {
-      center: latlng,
+      center: _latLng,
       scrollwheel: false,
       zoom: 16
     };
@@ -44,13 +58,19 @@ import _ from "lodash";
     });
     google.maps.event.addListener(map, "click", (evt) => {
       // TODO: マーカーの種類変えれるように
+      const ossan_id = `1-${Math.random() * 4 + 1 | 0}`;
       const marker = new google.maps.Marker({
-        icon: 'http://livedoor.4.blogimg.jp/amosaic/imgs/6/f/6fdf9540.gif',
-        scale: 100,
+        icon: `../img/ossan${ossan_id}.gif`,
+        scale: 1,
         optimized: false,
       });
       marker.setPosition(evt.latLng);
       marker.setMap(map);
+      fb.emit(Firebase.EVENT.PUSH, {
+        ossan_id: ossan_id,
+        lat: evt.latLng.lat(),
+        lng: evt.latLng.lng(),
+      });
     });
   };
 
