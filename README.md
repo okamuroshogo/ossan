@@ -35,7 +35,11 @@
 - 子供でもわかりやすい
 
 ## 5. 注力したこと（こだわり等）
-- 気持ち悪いおっさんのビジュアル
+- 気持ち悪いおっさんのビジュアル(選択可能)
+
+|ossan_1|ossan_2|ossan_special|
+|---|---|---|
+|![](public/img/ossan1-1.gif)|![](public/img/ossan2-1.gif)|![](public/img/ossanspecial-1.gif)|
 
 ## 6. 今後の展望
 - 警視庁との連携
