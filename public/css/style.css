@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -105,13 +106,23 @@ body {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 6em;
+  border: 1px solid #999;
+  border-radius: 5px;
+  width: 5em;
   height: 48px;
   background-color: #fff;
-  transition: left .3s ease-out; }
+  transition: left .3s ease-out;
+  font-size: 18px;
+  letter-spacing: .03em;
+  font-family: Helvetica, "helvetica Neue", YuGothic, "游ゴシック体", sans-serif;
+  cursor: pointer; }
+  .menu-btn:after {
+    content: "open"; }
 
 [data-active="true"] ~ .menu-btn {
   left: 250px; }
+  [data-active="true"] ~ .menu-btn:after {
+    content: "close"; }
 
 .sidebar {
   display: none;
@@ -155,18 +166,20 @@ body {
   display: block;
   margin: 20px 0;
   padding: 20px .5em;
-  border-top: 2px solid #aaa;
-  border-bottom: 2px solid #aaa; }
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999; }
 
 .sidebar__label {
   box-sizing: border-box;
   position: relative;
   display: block;
   padding: 10px;
-  border: 1px solid #999; }
+  border: 1px solid #999;
+  cursor: pointer; }
 
 .sidebar__radio-container {
-  padding: 20px 40px; }
+  margin: 40px 0;
+  padding: 0 40px; }
 
 .sidebar__radio-box + .sidebar__radio-box > .sidebar__label {
   margin-top: 40px; }
@@ -182,9 +195,11 @@ body {
   visibility: hidden; }
 
 .sidebar__radio:checked + .sidebar__label {
-  border: 1px solid red; }
+  border: 1px solid red;
+  cursor: default; }
 
 .wrapper {
+  font-family: Helvetica, "helvetica Neue", YuGothic, "游ゴシック体", sans-serif;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -194,7 +209,6 @@ body {
   -webkit-align-items: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
-  font-family: sans-serif;
   font-size: 16px;
   line-height: 1.5;
   height: 100%; }

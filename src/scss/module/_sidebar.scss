@@ -42,8 +42,8 @@
   display: block;
   margin: 20px 0;
   padding: 20px .5em;
-  border-top: 2px solid #aaa;
-  border-bottom: 2px solid #aaa;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
 }
 
 .sidebar__radio {
@@ -56,10 +56,12 @@
   display: block;
   padding: 10px;
   border: 1px solid #999;
+  cursor: pointer;
 }
 
 .sidebar__radio-container {
-  padding: 20px 40px;
+  margin: 40px 0;
+  padding: 0 40px;
 }
 
 .sidebar__radio-box + .sidebar__radio-box > .sidebar__label {
@@ -80,4 +82,5 @@
 
 .sidebar__radio:checked + .sidebar__label {
   border: 1px solid red;
+  cursor: default;
 }

@@ -7,12 +7,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6em;
+  border: 1px solid #999;
+  border-radius: 5px;
+  width: 5em;
   height: 48px;
   background-color: #fff;
   transition: left .3s ease-out;
+  font-size: 18px;
+  letter-spacing: .03em;
+  font-family: Helvetica, "helvetica Neue", YuGothic, "游ゴシック体", sans-serif;
+  cursor: pointer;
+  &:after {
+    content: "open";
+  }
 }
 
 [data-active="true"] ~ .menu-btn {
   left: 250px;
+  &:after {
+    content: "close";
+  }
 }
