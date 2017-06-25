@@ -1,6 +1,9 @@
 import $ from "jquery";
+import _ from "lodash";
 
+(() => {
 
+  if($(".js-map").length <= 0) return;
   const url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCHgLfO5xw1XPNrSnscz_UkRsFI5d8lcsk';
   const $target = $('body > script:last');
   const callbackName = 'initMap' + Date.now();
@@ -39,4 +42,16 @@ import $ from "jquery";
     $(window).on('resize', () => {
       map.setCenter(centerPosition);
     });
+    google.maps.event.addListener(map, "click", (evt) => {
+      // TODO: マーカーの種類変えれるように
+      const marker = new google.maps.Marker({
+        icon: 'http://livedoor.4.blogimg.jp/amosaic/imgs/6/f/6fdf9540.gif',
+        scale: 100,
+        optimized: false,
+      });
+      marker.setPosition(evt.latLng);
+      marker.setMap(map);
+    });
   };
+
+})()
