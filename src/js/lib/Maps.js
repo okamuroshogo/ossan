@@ -60,7 +60,13 @@ import Firebase from "../lib/Firebase";
       // TODO: マーカーの種類変えれるように
       const ossan_id = `1-${Math.random() * 4 + 1 | 0}`;
       const marker = new google.maps.Marker({
-        icon: `../img/ossan${ossan_id}.gif`,
+        icon: {
+          url: `../img/ossan${ossan_id}.gif`,
+          scaledSize: {
+            width: 100,
+            height: 100,
+          },
+        },
         scale: 1,
         optimized: false,
       });
