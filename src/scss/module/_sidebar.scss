@@ -1,9 +1,22 @@
 .sidebar {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
   flex-shrink: 0;
   flex-basis: 240px;
   width: 240px;
   height: 100%;
   overflow: auto;
+  background-color: #fff;
+  &[data-active="true"] {
+    display: block;
+    animation: slide-in .3s ease-out 0s 1 forwards;
+  }
+  &[data-active="false"] {
+    display: block;
+    animation: slide-out .3s ease-out 0s 1 forwards;
+  }
 }
 
 .sidebar__inner {
@@ -11,20 +24,27 @@
 }
 
 .sidear__logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  display: block;
+  margin: 10px 0;
   font-size: 24px;
-  height: 120px;
   letter-spacing: .03em;
   text-decoration: none;
   color: #333;
+  img {
+    display: block;
+    max-width: 100%;
+  }
+  span { display: none; }
 }
 
-.sidear__outline {
+
+.sidebar__outline {
+  display: block;
+  margin: 20px 0;
   padding: 20px .5em;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 2px solid #aaa;
+  border-bottom: 2px solid #aaa;
 }
 
 .sidebar__radio {

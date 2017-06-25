@@ -1,0 +1,18 @@
+.menu-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  appearance: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6em;
+  height: 48px;
+  background-color: #fff;
+  transition: left .3s ease-out;
+}
+
+[data-active="true"] ~ .menu-btn {
+  left: 250px;
+}

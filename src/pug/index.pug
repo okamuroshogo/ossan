@@ -14,12 +14,16 @@ block content-block
       "2",
       "special",
     ];
-  .sidebar
-    a.sidear__logo(href="") HIWAI
-    .sidear__outline.js-outline-modal 免責事項
+
+  .gmap.js-map
+  .sidebar.js-sidebar
+    a.sidear__logo(href="" title="HIWAI")
+      span HIWAI
+      img(src="img/logo.png")
+    .sidebar__outline.js-outline-modal 免責事項
     each id, i in imageStore
       .sidebar__radio-box
         input.sidebar__radio.js-ossan-select(type="radio" name="ossan" id=id value=id checked=i===0)
         label.sidebar__label(for=id)
           img.sidebar__label-img(src=`img/ossan${id}-1.gif`)
-  .gmap.js-map
+  button.menu-btn.js-sidebar-toggle toggle

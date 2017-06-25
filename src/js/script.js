@@ -2,6 +2,7 @@ import $ from "jquery";
 import _ from "lodash";
 import Firebase from "./lib/Firebase";
 import imgStore from "./lib/imgStore";
+import Sidebar from "./lib/Sidebar";
 
 const DEAFAULT_LAT_LNG = {
   lat: 35.6311093,
@@ -108,7 +109,7 @@ function initApp() {
         },
       },
       scale: 1,
-      optimized: false,
+      // optimized: false,
       animation: google.maps.Animation.DROP,
     });
     marker.setPosition({
@@ -127,4 +128,10 @@ function initApp() {
 (function init() {
   if($(".js-map").length <= 0) return;
   insertScript();
+  const sidebar = new Sidebar({
+    $root: $(".js-sidebar"),
+  });
+  $(".js-sidebar-toggle").on("click", () => {
+    sidebar.toggle();
+  });
 })();
