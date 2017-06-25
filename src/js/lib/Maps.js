@@ -72,6 +72,7 @@ import Firebase from "../lib/Firebase";
       });
       marker.setPosition(evt.latLng);
       marker.setMap(map);
+      marker.setAnimation(google.maps.Animation.DROP);
       fb.emit(Firebase.EVENT.PUSH, {
         ossan_id: ossan_id,
         lat: evt.latLng.lat(),
