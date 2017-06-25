@@ -1,18 +1,18 @@
 # このサイト全体のタイトル
-site_name: ossan
+site_name: 卑猥.city
 
 # meta description（og:description・twitter:descriptionでも使用）
-description: ossan web page.
+description: 卑猥.city
 
 # meta keywords
-keywords: []
+keywords: [卑猥, hiwai]
 
 # カノニカル・og:urlなどで使われる、このサイトのURL
 # （複数ページあるサイトでは、全てに同じURLを入れないように）
-# url: http://example.com/
+url: http://hiwai.city/
 
 # Facebook OGP・Twitter cardsで使われる画像 フルURLで指定すること
-# ogp_image_url: http://example.com/ogp.jpg
+ogp_image_url: http://hiwai.city/img/logo.png
 
 # Facebookアプリのapp id（入れないとWarningが出る）
 # facebook_app_id: 99999999999
