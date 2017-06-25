@@ -19,12 +19,13 @@
     <meta property="twitter:title" content="ossan">
     <meta property="twitter:description" content="ossan web page.">
     <!-- stylesheet-->
-    <link rel="stylesheet" href="/css/style.css?v=3">
+    <link rel="stylesheet" href="/css/style.css?v=4">
   </head>
   <body>
     <div class="wrapper">
-      <div class="sidebar"><a class="sidear__logo" href="">HIWAI</a>
-        <div class="sidear__outline js-outline-modal">免責事項</div>
+      <div class="gmap js-map"></div>
+      <div class="sidebar js-sidebar"><a class="sidear__logo" href="" title="HIWAI"><span>HIWAI</span><img src="img/logo.png"></a>
+        <div class="sidebar__outline js-outline-modal">免責事項</div>
         <div class="sidebar__radio-box">
           <input class="sidebar__radio js-ossan-select" type="radio" name="ossan" id="1" value="1" checked>
           <label class="sidebar__label" for="1"><img class="sidebar__label-img" src="img/ossan1-1.gif"></label>
@@ -38,9 +39,9 @@
           <label class="sidebar__label" for="special"><img class="sidebar__label-img" src="img/ossanspecial-1.gif"></label>
         </div>
       </div>
-      <div class="gmap js-map"></div>
+      <button class="menu-btn js-sidebar-toggle">toggle</button>
     </div>
     <!-- javascript-->
-    <script src="/js/script.js?v=9"></script>
+    <script src="/js/script.js?v=10"></script>
   </body>
 </html>

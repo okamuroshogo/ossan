@@ -36560,6 +36560,80 @@ exports.default = Firebase;
 },{"babel-runtime/core-js/object/get-prototype-of":3,"babel-runtime/helpers/classCallCheck":7,"babel-runtime/helpers/createClass":8,"babel-runtime/helpers/inherits":9,"babel-runtime/helpers/possibleConstructorReturn":10,"eventemitter3":87,"firebase":96,"lodash":142}],145:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require("babel-runtime/helpers/createClass");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _lodash = require("lodash");
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _jquery = require("jquery");
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ATTR = "data-active";
+var animationend = "animationend webkitAnimationEnd mozAnimationEnd msAnimationEnd oAnimationEnd";
+
+var Sidebar = function () {
+  function Sidebar() {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    (0, _classCallCheck3.default)(this, Sidebar);
+
+    this.$root = opts.$root || (0, _jquery2.default)(".js-root");
+    this.isActive = false;
+  }
+
+  (0, _createClass3.default)(Sidebar, [{
+    key: "open",
+    value: function open() {
+      this.isActive = true;
+      this.setAttr();
+    }
+  }, {
+    key: "close",
+    value: function close() {
+      var _this = this;
+
+      this.isActive = false;
+      this.setAttr();
+      // animation用
+      this.$root.on(animationend, function (evt) {
+        if (evt.target !== _this.$root[0]) return;
+        _this.$root.attr(ATTR, "");
+        _this.$root.off(animationend);
+      });
+    }
+  }, {
+    key: "toggle",
+    value: function toggle() {
+      this.isActive = !this.isActive;
+      this.setAttr();
+    }
+  }, {
+    key: "setAttr",
+    value: function setAttr() {
+      this.$root.attr(ATTR, this.isActive);
+    }
+  }]);
+  return Sidebar;
+}();
+
+exports.default = Sidebar;
+
+},{"babel-runtime/helpers/classCallCheck":7,"babel-runtime/helpers/createClass":8,"jquery":141,"lodash":142}],146:[function(require,module,exports){
+"use strict";
+
 /**
  * id: {int} range
  */
@@ -36569,7 +36643,7 @@ module.exports = {
   "special": 1
 };
 
-},{}],146:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 "use strict";
 
 var _jquery = require("jquery");
@@ -36587,6 +36661,10 @@ var _Firebase2 = _interopRequireDefault(_Firebase);
 var _imgStore = require("./lib/imgStore");
 
 var _imgStore2 = _interopRequireDefault(_imgStore);
+
+var _Sidebar = require("./lib/Sidebar");
+
+var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36688,7 +36766,7 @@ function initApp() {
         }
       },
       scale: 1,
-      optimized: false,
+      // optimized: false,
       animation: google.maps.Animation.DROP
     });
     marker.setPosition({
@@ -36706,6 +36784,12 @@ function initApp() {
 (function init() {
   if ((0, _jquery2.default)(".js-map").length <= 0) return;
   insertScript();
+  var sidebar = new _Sidebar2.default({
+    $root: (0, _jquery2.default)(".js-sidebar")
+  });
+  (0, _jquery2.default)(".js-sidebar-toggle").on("click", function () {
+    sidebar.toggle();
+  });
 })();
 
-},{"./lib/Firebase":144,"./lib/imgStore":145,"jquery":141,"lodash":142}]},{},[146]);
+},{"./lib/Firebase":144,"./lib/Sidebar":145,"./lib/imgStore":146,"jquery":141,"lodash":142}]},{},[147]);
