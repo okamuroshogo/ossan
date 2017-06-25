@@ -31886,12 +31886,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       // TODO: マーカーの種類変えれるように
       var ossan_id = "1-" + (Math.random() * 4 + 1 | 0);
       var marker = new google.maps.Marker({
-        icon: "../img/ossan" + ossan_id + ".gif",
+        icon: {
+          url: "../img/ossan" + ossan_id + ".gif",
+          scaledSize: {
+            width: 100,
+            height: 100
+          }
+        },
         scale: 1,
         optimized: false
       });
       marker.setPosition(evt.latLng);
       marker.setMap(map);
+      marker.setAnimation(google.maps.Animation.DROP);
       fb.emit(_Firebase2.default.EVENT.PUSH, {
         ossan_id: ossan_id,
         lat: evt.latLng.lat(),
