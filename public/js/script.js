@@ -36560,6 +36560,18 @@ exports.default = Firebase;
 },{"babel-runtime/core-js/object/get-prototype-of":3,"babel-runtime/helpers/classCallCheck":7,"babel-runtime/helpers/createClass":8,"babel-runtime/helpers/inherits":9,"babel-runtime/helpers/possibleConstructorReturn":10,"eventemitter3":87,"firebase":96,"lodash":142}],145:[function(require,module,exports){
 "use strict";
 
+/**
+ * id: {int} range
+ */
+module.exports = {
+  "1": 4,
+  "2": 3,
+  "special": 1
+};
+
+},{}],146:[function(require,module,exports){
+"use strict";
+
 var _jquery = require("jquery");
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -36571,6 +36583,10 @@ var _lodash2 = _interopRequireDefault(_lodash);
 var _Firebase = require("./lib/Firebase");
 
 var _Firebase2 = _interopRequireDefault(_Firebase);
+
+var _imgStore = require("./lib/imgStore");
+
+var _imgStore2 = _interopRequireDefault(_imgStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36647,12 +36663,12 @@ function initApp() {
   }
 
   var fb = new _Firebase2.default();
+  var ossan_id = "1";
 
   google.maps.event.addListener(map, "click", function (evt) {
     // firebaseにpush
     // 更新されたらマーカー置く
     // TODO: マーカーの種類変えれるように
-    var ossan_id = "1-" + (Math.random() * 4 + 1 | 0);
     fb.emit(_Firebase2.default.EVENT.PUSH, {
       ossan_id: ossan_id,
       lat: evt.latLng.lat(),
@@ -36661,9 +36677,11 @@ function initApp() {
   });
 
   fb.on(_Firebase2.default.EVENT.ADDED, function (data) {
+    var frameId = Math.random() * _imgStore2.default[data.ossan_id] + 1 | 0;
+    var ossan_frame_id = data.ossan_id + "-" + frameId;
     var marker = new google.maps.Marker({
       icon: {
-        url: "../img/ossan" + data.ossan_id + ".gif",
+        url: "../img/ossan" + ossan_frame_id + ".gif",
         scaledSize: {
           width: 80,
           height: 80
@@ -36679,6 +36697,10 @@ function initApp() {
     });
     marker.setMap(map);
   });
+
+  (0, _jquery2.default)(".js-ossan-select").on("click", function (evt) {
+    ossan_id = evt.target.value;
+  });
 }
 
 (function init() {
@@ -36686,4 +36708,4 @@ function initApp() {
   insertScript();
 })();
 
-},{"./lib/Firebase":144,"jquery":141,"lodash":142}]},{},[145]);
+},{"./lib/Firebase":144,"./lib/imgStore":145,"jquery":141,"lodash":142}]},{},[146]);

@@ -1,6 +1,7 @@
 import $ from "jquery";
 import _ from "lodash";
 import Firebase from "./lib/Firebase";
+import imgStore from "./lib/imgStore";
 
 const DEAFAULT_LAT_LNG = {
   lat: 35.6311093,
@@ -82,12 +83,12 @@ function initApp() {
   }
 
   const fb =new Firebase();
+  let ossan_id = "1";
 
   google.maps.event.addListener(map, "click", (evt) => {
     // firebaseにpush
     // 更新されたらマーカー置く
     // TODO: マーカーの種類変えれるように
-    const ossan_id = `1-${Math.random() * 4 + 1 | 0}`;
     fb.emit(Firebase.EVENT.PUSH, {
       ossan_id: ossan_id,
       lat: evt.latLng.lat(),
@@ -96,9 +97,11 @@ function initApp() {
   });
 
   fb.on(Firebase.EVENT.ADDED, (data) => {
+    const frameId = Math.random() * imgStore[data.ossan_id] + 1 | 0;
+    const ossan_frame_id = `${data.ossan_id}-${frameId}`;
     const marker = new google.maps.Marker({
       icon: {
-        url: `../img/ossan${data.ossan_id}.gif`,
+        url: `../img/ossan${ossan_frame_id}.gif`,
         scaledSize: {
           width: 80,
           height: 80,
@@ -113,6 +116,10 @@ function initApp() {
       lng: data.lng,
     });
     marker.setMap(map);
+  });
+
+  $(".js-ossan-select").on("click", (evt) => {
+    ossan_id = evt.target.value;
   });
 }
 
