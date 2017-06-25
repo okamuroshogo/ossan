@@ -1,14 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
-
-exports.__esModule = true;
-
-exports.default = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-},{}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
@@ -9824,35 +9814,8 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],3:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Sample = function Sample() {
-    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    (0, _classCallCheck3.default)(this, Sample);
-
-    this.name = opts.name;
-};
-
-exports.default = Sample;
-;
-
-},{"babel-runtime/helpers/classCallCheck":1}],4:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 'use strict';
-
-var _Sample = require('./lib/Sample');
-
-var _Sample2 = _interopRequireDefault(_Sample);
 
 var _jquery = require('jquery');
 
@@ -9860,12 +9823,48 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var sample = new _Sample2.default({
-    name: 'world'
-});
+var url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCHgLfO5xw1XPNrSnscz_UkRsFI5d8lcsk';
+var $target = (0, _jquery2.default)('body > script:last');
+var callbackName = 'initMap' + Date.now();
+$target.eq(0).after('<script src="' + url + '&callback=' + callbackName + '"></script>');
 
-(0, _jquery2.default)('.wrapper').on('click', function () {
-    console.log('hello, ' + sample.name + '.');
-});
+window[callbackName] = function () {
+  // Create a map object and specify the DOM element for display.
+  var latlng = { lat: 35.660013, lng: 139.729054 };
+  var mapOption = {
+    center: latlng,
+    scrollwheel: false,
+    zoom: 16
+  };
+  var map = new google.maps.Map((0, _jquery2.default)('.js-map')[0], mapOption);
+  var centerPosition = map.getCenter();
+  var mapColorOption = [{
+    'stylers': [{
+      'saturation': -100
+    }]
+  }, {
+    'featureType': 'poi',
+    'stylers': [{
+      'visibility': 'off'
+    }]
+  }];
+  var mapStyle = new google.maps.StyledMapType(mapColorOption);
+  map.mapTypes.set('latlngStyle', mapStyle);
+  map.setMapTypeId('latlngStyle');
+  (0, _jquery2.default)(window).on('resize', function () {
+    map.setCenter(centerPosition);
+  });
+};
 
-},{"./lib/Sample":3,"jquery":2}]},{},[4]);
+},{"jquery":1}],3:[function(require,module,exports){
+'use strict';
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+require('./lib/Maps');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+},{"./lib/Maps":2,"jquery":1}]},{},[3]);
