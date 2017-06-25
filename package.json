@@ -47,5 +47,8 @@
     "plugins": [
       "transform-runtime"
     ]
+  },
+  "dependencies": {
+    "firebase": "^4.1.3"
   }
 }
